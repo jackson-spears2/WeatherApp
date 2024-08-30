@@ -50,6 +50,7 @@ button {
     border-radius: 25px;
     border: 1px solid #54416d;
     text-align: center;
+    max-height: 1000px;
 }
 
 
