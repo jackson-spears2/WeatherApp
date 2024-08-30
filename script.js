@@ -5,8 +5,15 @@ function getCoordinates() {
     const state = document.getElementById('stateInput').value;
     const country = document.getElementById('countryInput').value;
 
+    if (state && !country) {
+        alert('Incorrect request. Please also include a country.');
+        return;
+    }
+
+
     const apiNinjasKey = '9TEHNYorXLQRACqUAZA0hQ==jKNIgREtEXtfu033';
     const geocodeApiUrl = `https://api.api-ninjas.com/v1/geocoding?city=${city}&state=${state}&country=${country}&X-Api-Key=${apiNinjasKey}`;
+    console.log(geocodeApiUrl);
 
     // Call API
     fetch(geocodeApiUrl)
@@ -19,6 +26,7 @@ function getCoordinates() {
         .then(data => {
             const latitude = data[0].latitude;
             const longitude = data[0].longitude;
+            console.log(data);
 
             // Continue by getting forecast data
             getForecast(latitude, longitude, city);
@@ -115,7 +123,7 @@ function resetApp() {
     weatherAppDiv.innerHTML = `
         <h2>Weather App</h2>
         <input type="text" id="cityInput" placeholder="Enter city" />
-        <input type="text" id="stateInput" placeholder="Enter state (optional)" />
+        <input type="text" id="stateInput" placeholder="Enter state (optional, must also include country)" />
         <input type="text" id="countryInput" placeholder="Enter country (optional)" />
 
         <button onclick="getCoordinates()">Show Forecast</button>
