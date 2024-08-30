@@ -1,13 +1,14 @@
 
+// Get latitude and longitude given city, state, and country input
 function getCoordinates() {
     const city = document.getElementById('cityInput').value;
     const state = document.getElementById('stateInput').value;
-    const country = document.getElementById('stateInput').value;
+    const country = document.getElementById('countryInput').value;
 
     const apiNinjasKey = '9TEHNYorXLQRACqUAZA0hQ==jKNIgREtEXtfu033';
-
     const geocodeApiUrl = `https://api.api-ninjas.com/v1/geocoding?city=${city}&state=${state}&country=${country}&X-Api-Key=${apiNinjasKey}`;
 
+    // Call API
     fetch(geocodeApiUrl)
         .then(response => {
             if (!response.ok) {
@@ -16,11 +17,10 @@ function getCoordinates() {
             return response.json();
         })
         .then(data => {
-            console.log(data);
-
             const latitude = data[0].latitude;
             const longitude = data[0].longitude;
 
+            // Continue by getting forecast data
             getForecast(latitude, longitude, city);
         })
         .catch(error => {
@@ -29,6 +29,7 @@ function getCoordinates() {
         })   
 }
 
+// Get weather forecast data given latitude and longitude
 function getForecast(latitude, longitude, city) {
    const weatherApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max&timezone=America%2FNew_York`;
 
@@ -42,6 +43,7 @@ function getForecast(latitude, longitude, city) {
        .then(data => {
            console.log(data);
 
+           // Continue by displaying data
            displayForecast(data, city);
        })
        .catch(error => {
@@ -50,24 +52,27 @@ function getForecast(latitude, longitude, city) {
        })
 }
 
+// Display data to HTML page
 function displayForecast(data, city) {
     const weatherAppDiv = document.getElementById('weatherApp');
 
     weatherAppDiv.innerHTML = '';
 
-
     var weatherHTML = `
         <h2>${city} 5-Day Forecast</h2>
     `;
 
+    // Add each day's data to html
     for (let i = 0; i < 5; i++) {
+        // Process data
         const date = data.daily.time[i].slice(5);
         const futureWeatherCode = getIcon(data.daily.weather_code[i]);
-        const tempHigh = (data.daily.temperature_2m_max[i] * (9 / 5) + 32);
-        const tempLow = (data.daily.temperature_2m_min[i] * (9 / 5) + 32);
-        const precipitation = data.daily.precipitation_sum[i] / 25.4;
-        const windSpeed = data.daily.wind_speed_10m_max[i] / 1.609;
+        const tempHigh = (data.daily.temperature_2m_max[i] * (9 / 5) + 32); // Converted C to F
+        const tempLow = (data.daily.temperature_2m_min[i] * (9 / 5) + 32); // Converted C to F
+        const precipitation = data.daily.precipitation_sum[i] / 25.4; // Converted mm to inches
+        const windSpeed = data.daily.wind_speed_10m_max[i] / 1.609; // Converted km/h to mph
 
+        // Add row to HTML
         const futureDateHTML = `
             <div id="weatherDisplay">
                 <div id="dateDisplay">
@@ -88,14 +93,13 @@ function displayForecast(data, city) {
                 </div>
             </div>
         `;
-
         weatherHTML = weatherHTML + futureDateHTML;
     }
 
+    // Add reset button
     const resetButtonHTML = `
         <button onclick="resetApp()">Reset App</button>
     `;
-
     weatherHTML = weatherHTML + resetButtonHTML;
    
 
@@ -103,11 +107,11 @@ function displayForecast(data, city) {
 
 }
 
+// Reset weather app to default state 
 function resetApp() {
     const weatherAppDiv = document.getElementById('weatherApp');
 
     weatherAppDiv.innerHTML = '';
-
     weatherAppDiv.innerHTML = `
         <h2>Weather App</h2>
         <input type="text" id="cityInput" placeholder="Enter city" />
@@ -118,6 +122,7 @@ function resetApp() {
     `;
 }
 
+// Take given weather code and use mapping to correct description and icon
 function getIcon(weatherCode) {
     const codeMapping = {
         "0": {
