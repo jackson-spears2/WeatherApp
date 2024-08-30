@@ -51,6 +51,10 @@ button {
     border: 1px solid #54416d;
     text-align: center;
     max-height: 10000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -59,6 +63,7 @@ button {
     height: 125px;
     justify-content: center;
     align-items: center;
+    width: 95%;
 }
 
     #weatherDisplay:nth-child(odd) {
