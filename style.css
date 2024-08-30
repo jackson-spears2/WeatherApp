@@ -5,7 +5,6 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    word-wrap: break-word;
 }
 
 h2 {
@@ -30,7 +29,7 @@ input {
     border-radius: 10px;
     border: 1px solid #31255a;
     background: white;
-    margin: 10px;
+    margin: 10px 25px 10px 25px;
 }
 
 button {
@@ -47,7 +46,7 @@ button {
 #weatherApp {
     background: #75b4e3;
     width: 75%;
-    padding: 25px;
+    padding: 10px;
     border-radius: 25px;
     border: 1px solid #54416d;
     text-align: center;
