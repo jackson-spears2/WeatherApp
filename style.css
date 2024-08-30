@@ -46,7 +46,7 @@ button {
 #weatherApp {
     background: #75b4e3;
     width: 75%;
-    padding: 25px;
+    padding: 5px;
     border-radius: 25px;
     border: 1px solid #54416d;
     text-align: center;
@@ -63,7 +63,7 @@ button {
     height: 125px;
     justify-content: center;
     align-items: center;
-    width: 95%;
+    width: 99%;
 }
 
     #weatherDisplay:nth-child(odd) {
