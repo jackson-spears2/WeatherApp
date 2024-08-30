@@ -1,0 +1,85 @@
+﻿body {
+    background: #31255a;
+    font-family: Verdana, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h2 {
+    color: #31255a;
+    margin: 20px 20px;
+}
+
+p {
+    color: #31255a;
+    margin: 4px;
+}
+
+img {
+    margin: -20px;
+}
+
+
+input {
+    width: 95%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #31255a;
+    background: white;
+    margin: 10px;
+}
+
+button {
+    background: #8fe0ff;
+    color: #31255a;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    width: 75%;
+    font-size: 20px;
+}
+
+#weatherApp {
+    background: #75b4e3;
+    width: 75vh;
+    padding: 25px;
+    border-radius: 25px;
+    border: 1px solid #54416d;
+    text-align: center;
+}
+
+
+#weatherDisplay {
+    display: flex;
+    height: 125px;
+    justify-content: center;
+    align-items: center;
+}
+
+    #weatherDisplay:nth-child(odd) {
+        background: #8fe0ff;
+    }
+
+#dateDisplay {
+    flex: 1;
+    width: 10%;
+}
+
+#iconsDisplay {
+    flex: 2;
+    width: 30%;
+}
+
+#tempsDisplay {
+    flex: 3;
+    width: 30%;
+}
+
+#additionalInfo {
+    flex: 4;
+    width: 30%;
+}
