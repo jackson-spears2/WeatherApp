@@ -13,7 +13,6 @@ function getCoordinates() {
 
     const apiNinjasKey = '9TEHNYorXLQRACqUAZA0hQ==jKNIgREtEXtfu033';
     const geocodeApiUrl = `https://api.api-ninjas.com/v1/geocoding?city=${city}&state=${state}&country=${country}&X-Api-Key=${apiNinjasKey}`;
-    console.log(geocodeApiUrl);
 
     // Call API
     fetch(geocodeApiUrl)
@@ -26,7 +25,6 @@ function getCoordinates() {
         .then(data => {
             const latitude = data[0].latitude;
             const longitude = data[0].longitude;
-            console.log(data);
 
             // Continue by getting forecast data
             getForecast(latitude, longitude, city);
@@ -49,8 +47,6 @@ function getForecast(latitude, longitude, city) {
            return response.json();
        })
        .then(data => {
-           console.log(data);
-
            // Continue by displaying data
            displayForecast(data, city);
        })
