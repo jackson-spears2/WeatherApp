@@ -77,15 +77,15 @@ button {
 
 #iconsDisplay {
     flex: 2;
-    width: 30%;
+    width: 25%;
 }
 
 #tempsDisplay {
     flex: 3;
-    width: 30%;
+    width: 25%;
 }
 
 #additionalInfo {
     flex: 4;
-    width: 30%;
+    width: 40%;
 }
